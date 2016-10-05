@@ -6,11 +6,15 @@ This is a mock of the official Tinaba app that serves as a testbench for the ear
 
 ## Installation
 
+<ol start="0">
+  <li>Instructions assume latest <a href="https://nodejs.org/en/">node.js</a> is already installed</li>
+</ol>
+
 1. `git clone git@gitlab.omnixell.com:mottolini/fake-tinaba.git`
 2. `cd fake-tinaba`
-3. `npm install`
+3. `npm i`
+4. `npm install -g cordova ionic` (if not already existing on machine)
 
 ## Serve
 
-1. In a terminal run `npm run watch`
-2. In a second terminal run `ionic serve`
+1. `npm run build && ionic serve`
