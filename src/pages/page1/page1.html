@@ -7,13 +7,24 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Transaction Details</h3>
 
-  <p>
-    Amount: {{amount | currency:'EUR':true:'1.2-2'}}
-  </p>
-  <p *ngIf="description !== ''">
-    Description: {{description}}
-  </p>
+
+<ion-content padding>
+  <div *ngIf="isDeeplingLaunch === true">
+    <h3>Transaction Details</h3>
+    <p *ngIf="amount">
+      Amount: {{amount | currency:'EUR':true:'1.2-2'}}
+    </p>
+    <p *ngIf="description">
+      Description: {{description}}
+    </p>
+  </div>
+
+  <div *ngIf="isDeeplingLaunch === false">
+    <h3>Please launch via Deeplink procedure</h3>
+    <p>
+      If you don't know what that is, just visit <em>[link to our custom page here]</em>
+      from your browser in order to experience this app in all it's glory.
+    </p>
+  </div>
 </ion-content>

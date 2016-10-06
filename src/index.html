@@ -22,6 +22,15 @@
 
   <link href="build/main.css" rel="stylesheet">
 
+  <script>
+    function handleOpenURL(url) {
+      localStorage.setItem('launchUrl', url);
+    }
+    document.addEventListener('deviceready', function() {
+      // Inits the rest of the App
+    }, false);
+</script>
+
 </head>
 <body>
 
