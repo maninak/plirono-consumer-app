@@ -1,17 +1,31 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+
+import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
+
+
 
 @Component({
   selector:     'page-page1',
-  templateUrl:  'page1.html'
+  templateUrl:  'page1.html',
+  providers:    [DeeplinkDataProvider]
 })
 export class Page1 {
-  amount:       number = 0;
-  description:  string = '';
+  amount: number;
+  description: string;
+  isDeeplingLaunch:boolean = true;
 
-  constructor(public navCtrl: NavController) {
-    
+  
+  constructor(
+      private navCtrl: NavController
+      , private deeplinkDataProvider: DeeplinkDataProvider 
+    ) {
+      setTimeout( () => {
+        if (this.isDeeplingLaunch = this.deeplinkDataProvider.init()) {
+          this.amount       = this.deeplinkDataProvider.params.amount;
+          this.description  = this.deeplinkDataProvider.params.description;
+        }
+    }, 500);
   }
-
+  
 }
