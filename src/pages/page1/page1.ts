@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
+
 
 @Component({
   selector:     'page-page1',
@@ -11,7 +11,7 @@ export class Page1 {
   description:  string = '';
 
   constructor(public navCtrl: NavController) {
-    
+    console.log('LaunchUrl = '+localStorage.getItem('launchUrl'));
   }
 
 }
