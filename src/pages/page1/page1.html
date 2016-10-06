@@ -10,10 +10,10 @@
 <ion-content padding>
   <h3>Transaction Details</h3>
 
-  <p>
+  <p *ngIf="amount">
     Amount: {{amount | currency:'EUR':true:'1.2-2'}}
   </p>
-  <p *ngIf="description !== ''">
+  <p *ngIf="description">
     Description: {{description}}
   </p>
 </ion-content>

@@ -24,9 +24,7 @@
 
   <script>
     function handleOpenURL(url) {
-      document.write(url); // TODO delete
       localStorage.setItem('launchUrl', url);
-      console.log(localStorage.getItem('launchUrl')); // TODO delete
     }
     document.addEventListener('deviceready', function() {
       // Inits the rest of the App
