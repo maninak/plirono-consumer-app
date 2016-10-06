@@ -11,6 +11,9 @@
   <h3>Transaction Details</h3>
 
   <p>
-    amount: {{amount | currency:'EUR':true:'1.2-2'}}
+    Amount: {{amount | currency:'EUR':true:'1.2-2'}}
+  </p>
+  <p *ngIf="description !== ''">
+    Description: {{description}}
   </p>
 </ion-content>
