@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
 
+
 @Component({
   selector:     'page-page1',
   templateUrl:  'page1.html',
@@ -12,17 +13,19 @@ import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 export class Page1 {
   amount: number;
   description: string;
-   
+  isDeeplingLaunch:boolean = true;
+
+  
   constructor(
       private navCtrl: NavController
       , private deeplinkDataProvider: DeeplinkDataProvider 
     ) {
-      this.deeplinkDataProvider.init()
       setTimeout( () => {
-        this.amount = this.deeplinkDataProvider.params.amount;
-        console.log('LaunchUrl = '+this.deeplinkDataProvider.launchUrl); // TODO delete
-        console.log(this.deeplinkDataProvider.params); // TODO delete
-    }, 1000);
+        if (this.isDeeplingLaunch = this.deeplinkDataProvider.init()) {
+          this.amount       = this.deeplinkDataProvider.params.amount;
+          this.description  = this.deeplinkDataProvider.params.description;
+        }
+    }, 500);
   }
   
 }
