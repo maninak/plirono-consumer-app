@@ -22,13 +22,10 @@
 
   <link href="build/main.css" rel="stylesheet">
 
-  <script>
+  <script type="text/javascript">
     function handleOpenURL(url) {
-      localStorage.setItem('launchUrl', url);
+      document.dispatchEvent(new CustomEvent('deeplink', { detail: { 'launchUrl': url } } ));
     }
-    document.addEventListener('deviceready', function() {
-      // Inits the rest of the App
-    }, false);
 </script>
 
 </head>

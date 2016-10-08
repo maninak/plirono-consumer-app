@@ -10,7 +10,7 @@
 
 
 <ion-content padding>
-  <div *ngIf="isDeeplingLaunch === true">
+  <div *ngIf="isDeeplinkLaunch">
     <h3>Transaction Details</h3>
     <p *ngIf="amount">
       Amount: {{amount | currency:'EUR':true:'1.2-2'}}
@@ -18,10 +18,16 @@
     <p *ngIf="description">
       Description: {{description}}
     </p>
+    <p *ngIf="merchantId">
+      MerchantId: {{merchantId}}
+    </p>
+    <p *ngIf="merchantEmail">
+      Merchant e-mail: {{merchantEmail}}
+    </p>
   </div>
 
-  <div *ngIf="isDeeplingLaunch === false">
-    <h3>Please launch via Deeplink procedure</h3>
+  <div *ngIf="!(isDeeplinkLaunch)">
+    <h3>Please launch via deeplink procedure</h3>
     <p>
       If you don't know what that is, just visit <em>[link to our custom page here]</em>
       from your browser in order to experience this app in all its glory.
