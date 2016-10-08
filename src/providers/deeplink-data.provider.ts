@@ -35,7 +35,7 @@ export class DeeplinkDataProvider {
 
 
   private init() {
-    let unparsedParams:string;
+    let unparsedParams: string;
     let splitToComponentsRegex  = /(.*:\/\/)(.*)\?(.*)/;
 
     this.dataStore.url          = this.dataStore.launchUrl.replace(splitToComponentsRegex, '$2');
@@ -47,7 +47,7 @@ export class DeeplinkDataProvider {
   }
 
 
-  private parseUrlParams(unparsedParams:string):any {
+  private parseUrlParams(unparsedParams: string): any {
     var parsedParams = {};
     unparsedParams.split("&").forEach(function(part) {
       var item = part.split("=");
@@ -57,7 +57,7 @@ export class DeeplinkDataProvider {
   }
 
 
-  private sanitizeUrl(unsafeUrl: string):string {
+  private sanitizeUrl(unsafeUrl: string): string {
     return unsafeUrl
         .replace(/\{/g, '%7B')
         .replace(/\}/g, '%7D')
