@@ -18,16 +18,15 @@ export class Page1 implements OnInit {
   isDeeplinkLaunch  : boolean = false;
 
   
-  constructor(
-      private   navCtrl             : NavController
-      , private deeplinkDataProvider: DeeplinkDataProvider 
-    ) {}
+  constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
+
 
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
       (params: any) => { this.updateFromSubscription(params); }
     );
   }
+
 
   private updateFromSubscription(params:any) {
     this.amount         = params.amount;
@@ -36,5 +35,6 @@ export class Page1 implements OnInit {
     this.merchantEmail  = params.merchantEmail;
     this.isDeeplinkLaunch = true;
   }
+
 
 }
