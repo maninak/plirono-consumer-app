@@ -11,17 +11,16 @@ import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
   providers:    [DeeplinkDataProvider]
 })
 export class Page1 implements OnInit {
-  amount            : number;
-  description       : string;
-  merchantId        : string;
-  merchantEmail     : string;
-  isDeeplinkLaunch  : boolean = false;
+  amount                  : number;
+  description             : string;
+  merchantEmail           : string;
+  merchantId              : string;
+  isDeeplinkLaunch        : boolean = false;
+  isTransactionProcessed  : boolean = false;
 
-  
-  constructor(
-      private   navCtrl             : NavController
-      , private deeplinkDataProvider: DeeplinkDataProvider 
-    ) {}
+ 
+  constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
+
 
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
@@ -29,12 +28,17 @@ export class Page1 implements OnInit {
     );
   }
 
-  private updateFromSubscription(params:any) {
+
+  private updateFromSubscription(params: any) {
     this.amount         = params.amount;
     this.description    = params.description;
-    this.merchantId     = params.merchantId;
     this.merchantEmail  = params.merchantEmail;
+    this.merchantId     = params.merchantId;
     this.isDeeplinkLaunch = true;
   }
+
+
+  private processTransaction() { this.isTransactionProcessed = true; }
+
 
 }

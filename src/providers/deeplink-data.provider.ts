@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { Subject    } from 'rxjs/Subject';
 
 
 
@@ -27,7 +27,7 @@ export class DeeplinkDataProvider {
     this._params$     = <Subject<any>>    new Subject();
 
     document.addEventListener('deeplink', (event:any) => {
-      this.dataStore.launchUrl = event.detail.launchUrl;
+      this.dataStore.launchUrl = this.sanitizeUrl(event.detail.launchUrl);
       this._launchUrl$.next(this.dataStore.launchUrl);
       this.init();
     });
@@ -35,7 +35,7 @@ export class DeeplinkDataProvider {
 
 
   private init() {
-    let unparsedParams:string;
+    let unparsedParams: string;
     let splitToComponentsRegex  = /(.*:\/\/)(.*)\?(.*)/;
 
     this.dataStore.url          = this.dataStore.launchUrl.replace(splitToComponentsRegex, '$2');
@@ -47,13 +47,27 @@ export class DeeplinkDataProvider {
   }
 
 
-  private parseUrlParams(unparsedParams:string) {
+  private parseUrlParams(unparsedParams: string): any {
     var parsedParams = {};
     unparsedParams.split("&").forEach(function(part) {
       var item = part.split("=");
       parsedParams[item[0]] = decodeURIComponent(item[1]);
     });
     return parsedParams;
+  }
+
+
+  private sanitizeUrl(unsafeUrl: string): string {
+    return unsafeUrl
+        .replace(/\{/g, '%7B')
+        .replace(/\}/g, '%7D')
+        .replace(/\[/g, '%5B')
+        .replace(/]/g, '%5D')
+        .replace(/;/g, '%3B')
+        .replace(/</g, '%3C')
+        .replace(/>/g, '%3E')
+        .replace(/"/g, '%22')
+        .replace(/'/g, '%27');
   }
 
 

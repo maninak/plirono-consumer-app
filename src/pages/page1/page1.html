@@ -13,17 +13,22 @@
   <div *ngIf="isDeeplinkLaunch">
     <h3>Transaction Details</h3>
     <p *ngIf="amount">
-      Amount: {{amount | currency:'EUR':true:'1.2-2'}}
+      Amount: <strong>{{amount | currency:'EUR':true:'1.2-2'}}</strong>
     </p>
     <p *ngIf="description">
-      Description: {{description}}
-    </p>
-    <p *ngIf="merchantId">
-      MerchantId: {{merchantId}}
+      Description: <strong>{{description}}</strong>
     </p>
     <p *ngIf="merchantEmail">
-      Merchant e-mail: {{merchantEmail}}
+      Merchant e-mail: <strong>{{merchantEmail}}</strong>
     </p>
+    <p *ngIf="merchantId">
+      MerchantId: <strong>{{merchantId}}</strong>
+    </p>
+    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" large block margin-vertical>Confirm and pay</button>
+    <button *ngIf="isTransactionProcessed" ion-button icon-left color="secondary" large block margin-vertical>
+      <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+      Transaction Successful
+    </button>
   </div>
 
   <div *ngIf="!(isDeeplinkLaunch)">
