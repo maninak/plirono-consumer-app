@@ -24,7 +24,11 @@
     <p *ngIf="merchantId">
       MerchantId: <strong>{{merchantId}}</strong>
     </p>
-    <button ion-button color="secondary" block margin-vertical>Confirm and pay</button>
+    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" large block margin-vertical>Confirm and pay</button>
+    <button *ngIf="isTransactionProcessed" ion-button icon-left color="secondary" large block margin-vertical>
+      <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+      Transaction Successful
+    </button>
   </div>
 
   <div *ngIf="!(isDeeplinkLaunch)">

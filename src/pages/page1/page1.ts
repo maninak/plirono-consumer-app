@@ -11,13 +11,14 @@ import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
   providers:    [DeeplinkDataProvider]
 })
 export class Page1 implements OnInit {
-  amount            : number;
-  description       : string;
-  merchantEmail     : string;
-  merchantId        : string;
-  isDeeplinkLaunch  : boolean = false;
+  amount                  : number;
+  description             : string;
+  merchantEmail           : string;
+  merchantId              : string;
+  isDeeplinkLaunch        : boolean = false;
+  isTransactionProcessed  : boolean = false;
 
-  
+ 
   constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
 
 
@@ -35,6 +36,9 @@ export class Page1 implements OnInit {
     this.merchantId     = params.merchantId;
     this.isDeeplinkLaunch = true;
   }
+
+
+  private processTransaction() { this.isTransactionProcessed = true; }
 
 
 }
