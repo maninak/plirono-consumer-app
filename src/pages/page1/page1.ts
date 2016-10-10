@@ -15,6 +15,8 @@ export class Page1 implements OnInit {
   description             : string;
   merchantEmail           : string;
   merchantId              : string;
+  cartId                  : string;
+  callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
 
@@ -34,11 +36,16 @@ export class Page1 implements OnInit {
     this.description    = params.description;
     this.merchantEmail  = params.merchantEmail;
     this.merchantId     = params.merchantId;
+    this.cartId         = params.cartId;
+    this.callbackUrl    = params.callbackUrl;
     this.isDeeplinkLaunch = true;
   }
 
 
-  private processTransaction() { this.isTransactionProcessed = true; }
+  private processTransaction()  { this.isTransactionProcessed = true; }
+
+
+  private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
 
 
 }
