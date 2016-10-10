@@ -42,7 +42,10 @@ export class Page1 implements OnInit {
   }
 
 
-  private processTransaction() { this.isTransactionProcessed = true; }
+  private processTransaction()  { this.isTransactionProcessed = true; }
+
+
+  private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
 
 
 }
