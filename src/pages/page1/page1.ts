@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
@@ -15,8 +14,12 @@ export class Page1 implements OnInit {
   description             : string;
   merchantEmail           : string;
   merchantId              : string;
+  cartId                  : string;
+  callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
+  creditCard              : string;
+  destination             : string;
 
  
   constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
@@ -34,11 +37,16 @@ export class Page1 implements OnInit {
     this.description    = params.description;
     this.merchantEmail  = params.merchantEmail;
     this.merchantId     = params.merchantId;
+    this.cartId         = params.cartId;
+    this.callbackUrl    = params.callbackUrl;
     this.isDeeplinkLaunch = true;
   }
 
 
-  private processTransaction() { this.isTransactionProcessed = true; }
+  private processTransaction()  { this.isTransactionProcessed = true; }
+
+
+  private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
 
 
 }

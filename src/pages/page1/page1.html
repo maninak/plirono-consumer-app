@@ -12,26 +12,43 @@
 <ion-content padding>
   <div *ngIf="isDeeplinkLaunch">
     <h3>Transaction Details</h3>
-    <p *ngIf="amount">
-      Amount: <strong>{{amount | currency:'EUR':true:'1.2-2'}}</strong>
-    </p>
-    <p *ngIf="description">
-      Description: <strong>{{description}}</strong>
-    </p>
-    <p *ngIf="merchantEmail">
-      Merchant e-mail: <strong>{{merchantEmail}}</strong>
-    </p>
-    <p *ngIf="merchantId">
-      MerchantId: <strong>{{merchantId}}</strong>
-    </p>
-    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" large block margin-vertical>Confirm and pay</button>
-    <button *ngIf="isTransactionProcessed" ion-button icon-left color="secondary" large block margin-vertical>
-      <ion-icon name="md-checkmark-circle-outline"></ion-icon>
-      Transaction Successful
+    <ion-row>
+      <ion-col item-left width-33>Amount:</ion-col>
+      <ion-col item-left><strong>{{amount | currency:'EUR':true:'1.2-2'}}</strong></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col item-left width-33>Description:</ion-col>
+      <ion-col item-left><strong>{{description}}</strong></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col item-left width-33>Merchant Email:</ion-col>
+      <ion-col item-left><strong>{{merchantEmail}}</strong></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col item-left width-33>Merchant ID:</ion-col>
+      <ion-col item-left><strong>{{merchantId}}</strong></ion-col>
+    </ion-row>
+    <ion-item margin-top>
+      <ion-label>Select credit card</ion-label>
+      <ion-select [(ngModel)]="creditCard">
+        <ion-option value="3007" selected="true">x-3007</ion-option>
+        <ion-option value="2128">x-2128</ion-option>
+        <ion-option value="4313">x-4313</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item margin-bottom>
+      <ion-label>Select shipping destination</ion-label>
+      <ion-select [(ngModel)]="destination">
+        <ion-option value="home">home</ion-option>
+        <ion-option value="work" selected="true">work</ion-option>
+      </ion-select>
+    </ion-item>
+    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" block margin-vertical>Confirm details</button>
+    <button *ngIf="isTransactionProcessed" (click)="proceedToCheckout()" ion-button icon-right color="secondary" block margin-vertical>
+      Proceed to checkout
+      <ion-icon name="exit"></ion-icon>
     </button>
-    <img *ngIf="isTransactionProcessed" src="https://simthegoongraal.files.wordpress.com/2015/07/75604-obama-making-it-rain-gif-imgur-qe5i.gif" style="width: 100%;" margin-vertical>
   </div>
-
   <div *ngIf="!(isDeeplinkLaunch)">
     <h3>Please launch via deeplink procedure</h3>
     <p>
