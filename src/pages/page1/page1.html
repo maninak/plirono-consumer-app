@@ -28,6 +28,21 @@
       <ion-col item-left width-33>Merchant ID:</ion-col>
       <ion-col item-left><strong>{{merchantId}}</strong></ion-col>
     </ion-row>
+    <ion-item margin-top>
+      <ion-label>Select credit card</ion-label>
+      <ion-select [(ngModel)]="creditCard">
+        <ion-option value="3007" selected="true">x-3007</ion-option>
+        <ion-option value="2128">x-2128</ion-option>
+        <ion-option value="4313">x-4313</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item margin-bottom>
+      <ion-label>Select shipping destination</ion-label>
+      <ion-select [(ngModel)]="destination">
+        <ion-option value="home">home</ion-option>
+        <ion-option value="work" selected="true">work</ion-option>
+      </ion-select>
+    </ion-item>
     <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" block margin-vertical>Confirm details</button>
     <button *ngIf="isTransactionProcessed" (click)="proceedToCheckout()" ion-button icon-right color="secondary" block margin-vertical>
       Proceed to checkout

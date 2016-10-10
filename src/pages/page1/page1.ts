@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from 'ionic-angular';
 
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
@@ -19,6 +18,8 @@ export class Page1 implements OnInit {
   callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
+  creditCard              : string;
+  destination             : string;
 
  
   constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
