@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
 
-
 @Component({
   selector:     'page-page1',
   templateUrl:  'page1.html',
@@ -24,13 +23,11 @@ export class Page1 implements OnInit {
  
   constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
 
-
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
       (params: any) => { this.updateFromSubscription(params); }
     );
   }
-
 
   private updateFromSubscription(params: any) {
     this.amount         = params.amount;
@@ -42,11 +39,8 @@ export class Page1 implements OnInit {
     this.isDeeplinkLaunch = true;
   }
 
-
   private processTransaction()  { this.isTransactionProcessed = true; }
 
-
   private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
-
 
 }

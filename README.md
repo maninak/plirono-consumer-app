@@ -1,8 +1,8 @@
-# Fake Tinaba app
+# Plirono scaffold app
 
 ## Description
 
-This is a mock of the official Tinaba app that serves as a testbench for the early functionality being implemented in PayWithMyPhone project.
+This is a proof-of-concept app that serves as a testbench for the early functionality being implemented in Plirono project.
 
 ## Installation
 
