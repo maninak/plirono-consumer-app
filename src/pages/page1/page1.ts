@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Platform } from 'ionic-angular';
+import { GoogleAnalytics } from 'ionic-native';
 
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
@@ -20,9 +22,11 @@ export class Page1 implements OnInit {
   isTransactionProcessed  : boolean = false;
   creditCard              : string;
   destination             : string;
-
  
-  constructor(private deeplinkDataProvider: DeeplinkDataProvider) {}
+  constructor(
+      private deeplinkDataProvider: DeeplinkDataProvider
+      , private platform          : Platform
+  ) {}
 
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
@@ -39,6 +43,15 @@ export class Page1 implements OnInit {
     this.cartId             = params.cartId;
     this.callbackUrl        = params.callbackUrl;
     this.isDeeplinkLaunch   = true;
+    this.emitDeeplinkGoogleAnalytics();
+  }
+
+  private emitDeeplinkGoogleAnalytics() {
+    this.platform.ready().then(() => {
+      GoogleAnalytics.startTrackerWithId(this.googleAnalyticsId).then( () => {
+        GoogleAnalytics.trackEvent('Plirono Button', 'deeplink', 'Pay With Plirono');
+      });
+    });
   }
 
   private processTransaction()  { this.isTransactionProcessed = true; }
