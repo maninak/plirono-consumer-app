@@ -6,29 +6,29 @@ import { Subject    } from 'rxjs/Subject';
 
 @Injectable()
 export class DeeplinkDataProvider {
-  private _launchUrl$ : Subject<string>;
-  private _url$       : Subject<string>;
-  private _params$    : Subject<any>;
-  private dataStore: {
-    launchUrl         : string
-    , url             : string
-    , params          : any
+  private _deeplinkUrl$ : Subject<string>;
+  private _path$        : Subject<string>;
+  private _params$      : Subject<any>;
+  private dataStore     : {
+    deeplinkUrl : string
+    , path      : string
+    , params    : any
   }
 
-  get launchUrl$()    { return this._launchUrl$.asObservable(); }
-  get url$()          { return this._url$.asObservable();       }
-  get params$()       { return this._params$.asObservable();    }
+  get deeplinkUrl$()  { return this._deeplinkUrl$.asObservable(); }
+  get path$()         { return this._path$.asObservable();        }
+  get params$()       { return this._params$.asObservable();      }
 
 
   constructor(){
-    this.dataStore    = { launchUrl: '', url: '', params: {} };
-    this._launchUrl$  = <Subject<string>> new Subject();
-    this._url$        = <Subject<string>> new Subject();
-    this._params$     = <Subject<any>>    new Subject();
+    this.dataStore      = { deeplinkUrl: '', path: '', params: {} };
+    this._deeplinkUrl$  = <Subject<string>> new Subject();
+    this._path$         = <Subject<string>> new Subject();
+    this._params$       = <Subject<any>>    new Subject();
 
     document.addEventListener('deeplink', (event:any) => {
-      this.dataStore.launchUrl = this.sanitizeUrl(event.detail.launchUrl);
-      this._launchUrl$.next(this.dataStore.launchUrl);
+      this.dataStore.deeplinkUrl = event.detail.launchUrl;
+      this._deeplinkUrl$.next(this.dataStore.deeplinkUrl);
       this.init();
     });
   }
@@ -36,13 +36,13 @@ export class DeeplinkDataProvider {
 
   private init() {
     let unparsedParams: string;
-    let splitToComponentsRegex  = /(.*:\/\/)(.*)\?(.*)/;
+    let splitToComponentsRegex  = /(.*):\/(\/.*)\?(.*)/;
 
-    this.dataStore.url          = this.dataStore.launchUrl.replace(splitToComponentsRegex, '$2');
-    unparsedParams              = this.dataStore.launchUrl.replace(splitToComponentsRegex, '$3');
+    this.dataStore.path         = this.dataStore.deeplinkUrl.replace(splitToComponentsRegex, '$2');
+    unparsedParams              = this.dataStore.deeplinkUrl.replace(splitToComponentsRegex, '$3');
     this.dataStore.params       = this.parseUrlParams(unparsedParams);
     
-    this._url$.next(this.dataStore.url);
+    this._path$.next(this.dataStore.path);
     this._params$.next(this.dataStore.params);
   }
 
@@ -54,20 +54,6 @@ export class DeeplinkDataProvider {
       parsedParams[item[0]] = decodeURIComponent(item[1]);
     });
     return parsedParams;
-  }
-
-
-  private sanitizeUrl(unsafeUrl: string): string {
-    return unsafeUrl
-        .replace(/\{/g, '%7B')
-        .replace(/\}/g, '%7D')
-        .replace(/\[/g, '%5B')
-        .replace(/]/g, '%5D')
-        .replace(/;/g, '%3B')
-        .replace(/</g, '%3C')
-        .replace(/>/g, '%3E')
-        .replace(/"/g, '%22')
-        .replace(/'/g, '%27');
   }
 
 
