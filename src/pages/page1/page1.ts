@@ -13,6 +13,7 @@ export class Page1 implements OnInit {
   description             : string;
   merchantEmail           : string;
   merchantId              : string;
+  googleAnalyticsId       : string;
   cartId                  : string;
   callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
@@ -30,13 +31,14 @@ export class Page1 implements OnInit {
   }
 
   private updateFromSubscription(params: any) {
-    this.amount         = params.amount;
-    this.description    = params.description;
-    this.merchantEmail  = params.merchantEmail;
-    this.merchantId     = params.merchantId;
-    this.cartId         = params.cartId;
-    this.callbackUrl    = params.callbackUrl;
-    this.isDeeplinkLaunch = true;
+    this.amount             = params.amount;
+    this.description        = params.description;
+    this.merchantEmail      = params.merchantEmail;
+    this.merchantId         = params.merchantId;
+    this.googleAnalyticsId  = params.googleAnalyticsId;
+    this.cartId             = params.cartId;
+    this.callbackUrl        = params.callbackUrl;
+    this.isDeeplinkLaunch   = true;
   }
 
   private processTransaction()  { this.isTransactionProcessed = true; }
