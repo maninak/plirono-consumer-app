@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -43,8 +43,8 @@
         <ion-option value="work" selected="true">work</ion-option>
       </ion-select>
     </ion-item>
-    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button color="primary" block margin-vertical>Confirm details</button>
-    <button *ngIf="isTransactionProcessed" (click)="proceedToCheckout()" ion-button icon-right color="secondary" block margin-vertical>
+    <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button block margin-vertical>Confirm details</button>
+    <button *ngIf="isTransactionProcessed" (click)="proceedToCheckout()" ion-button icon-right block margin-vertical>
       Proceed to checkout
       <ion-icon name="exit"></ion-icon>
     </button>
