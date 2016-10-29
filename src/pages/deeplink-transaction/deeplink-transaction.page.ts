@@ -6,11 +6,10 @@ import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
 
 @Component({
-  selector:     'page-page1',
-  templateUrl:  'page1.html',
+  templateUrl:  './deeplink-transaction.page.html',
   providers:    [DeeplinkDataProvider]
 })
-export class Page1 implements OnInit {
+export class DeeplinkTransactionPage implements OnInit {
   amount                  : number;
   description             : string;
   merchantEmail           : string;

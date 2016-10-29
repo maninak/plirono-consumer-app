@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subject    } from 'rxjs/Subject';
 
 
-
 @Injectable()
 export class DeeplinkDataProvider {
   private _deeplinkUrl$ : Subject<string>;
@@ -33,7 +32,6 @@ export class DeeplinkDataProvider {
     });
   }
 
-
   private init() {
     let unparsedParams: string;
     let splitToComponentsRegex  = /(.*):\/(\/.*)\?(.*)/;
@@ -46,7 +44,6 @@ export class DeeplinkDataProvider {
     this._params$.next(this.dataStore.params);
   }
 
-
   private parseUrlParams(unparsedParams: string): any {
     var parsedParams = {};
     unparsedParams.split("&").forEach(function(part) {
@@ -55,6 +52,5 @@ export class DeeplinkDataProvider {
     });
     return parsedParams;
   }
-
 
 }
