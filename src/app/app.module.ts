@@ -2,16 +2,15 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { Page1 } from '../pages/page1/page1';
+import { DeeplinkTransactionPage } from '../pages/deeplink-transaction/deeplink-transaction.page';
 
 import { DeeplinkDataProvider } from '../providers/deeplink-data.provider';
-
 
 
 @NgModule({
   declarations: [
     MyApp,
-    Page1
+    DeeplinkTransactionPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -19,7 +18,7 @@ import { DeeplinkDataProvider } from '../providers/deeplink-data.provider';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    Page1
+    DeeplinkTransactionPage
   ],
   providers: [DeeplinkDataProvider]
 })

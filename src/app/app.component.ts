@@ -2,17 +2,16 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
-import { Page1 } from '../pages/page1/page1';
+import { DeeplinkTransactionPage } from '../pages/deeplink-transaction/deeplink-transaction.page';
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: './app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = Page1;
-
+  rootPage: any = DeeplinkTransactionPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform) {
@@ -20,7 +19,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Page One', component: Page1 }
+      { title: 'Deeplink Transaction Page', component: DeeplinkTransactionPage }
     ];
 
   }
