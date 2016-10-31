@@ -14,7 +14,7 @@
 
 
 <ion-content class="add-card" padding>
-  <form #creditCardForm="ngForm" (ngSubmit)="logCardForm(creditCardForm)" novalidate>
+  <form #creditCardForm="ngForm" (ngSubmit)="addCard()" novalidate>
     <ion-item>
       <ion-label floating>Card number</ion-label>
       <ion-input type="number" [(ngModel)]="formNumber" name="number" required clearInput></ion-input>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController } from 'ionic-angular';
 import { GoogleAnalytics } from 'ionic-native';
 
+import { CreditCard } from '../../structures/credit-card.interface';
 import { AddCardPage } from '../add-card/add-card.page';
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
@@ -11,6 +12,7 @@ import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
   providers   : [DeeplinkDataProvider]
 })
 export class DeeplinkTransactionPage implements OnInit {
+  creditCards             : CreditCard[];
   amount                  : number;
   description             : string;
   merchantEmail           : string;
@@ -27,7 +29,10 @@ export class DeeplinkTransactionPage implements OnInit {
       private deeplinkDataProvider: DeeplinkDataProvider
       , private platform          : Platform
       , private modalController   : ModalController
-  ) {}
+  ) {
+    this.creditCards = JSON.parse(localStorage.getItem('creditCards'));
+    console.log(this.creditCards); // TODO delete
+  }
 
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
@@ -57,7 +62,10 @@ export class DeeplinkTransactionPage implements OnInit {
 
   private onCardSelection() {
     if (this.selectedCard === "") {
-      let addCardModal = this.modalController.create(AddCardPage).present();
+      this.modalController.create(AddCardPage, {
+        'creditCards' : this.creditCards
+      })
+      .present();
     }
     else {
       this.logCardSelection();

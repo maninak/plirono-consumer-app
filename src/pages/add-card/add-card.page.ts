@@ -1,21 +1,44 @@
 import { Component } from '@angular/core';
 import { Platform, NavParams, ViewController } from 'ionic-angular';
 
+import { CreditCard } from '../../structures/credit-card.interface';
+
 
 @Component({
   templateUrl: './add-card.page.html'
 })
 export class AddCardPage {
-  formNumber: string;
-  formName  : string;
-  formExpiry: string;
-  formCvc   : string;
+  creditCards : CreditCard[];
+  formNumber  : string;
+  formName    : string;
+  formExpiry  : string;
+  formCvc     : number;
   
   constructor(
-    private platform        : Platform
-    , private navParams     : NavParams
-    , private viewController: ViewController
-  ) {}
+      private platform        : Platform
+      , private navParams     : NavParams
+      , private viewController: ViewController
+  ) {
+    if (navParams.get('creditCards')) {
+      this.creditCards = navParams.get('creditCards');
+    }
+    else {
+      this.creditCards = [];
+    }
+  }
+
+  private addCard() {
+    // Asserts all form input fields have been validated before being called
+    let newCard: CreditCard = {
+      number: this.formNumber
+      , name: this.formName
+      , expiry: this.formExpiry
+      , cvc: this.formCvc
+    };
+    this.creditCards.push(newCard);
+    localStorage.setItem('creditCards', JSON.stringify(this.creditCards));
+    this.dismiss();
+  }
 
   private dismiss() {
     this.viewController.dismiss();
