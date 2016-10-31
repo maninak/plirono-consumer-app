@@ -22,10 +22,6 @@ export class DeeplinkTransactionPage implements OnInit {
   isTransactionProcessed  : boolean = false;
   selectedCard            : string;
   destination             : string;
-  formNumber              : string;
-  formName                : string;
-  formExpiry              : string;
-  formCvc                 : string;
  
   constructor(
       private deeplinkDataProvider: DeeplinkDataProvider
@@ -78,10 +74,6 @@ export class DeeplinkTransactionPage implements OnInit {
 
   private logCardSelection(){
     console.log("Selected card: " + this.selectedCard);
-  }
-
-  private logCardForm(formElem: any) {
-    console.log(formElem.form.value);
   }
 
 }

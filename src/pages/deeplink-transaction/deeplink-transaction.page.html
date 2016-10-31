@@ -55,24 +55,5 @@
       If you don't know what that is, just visit <em>[link to our custom page here]</em>
       from your browser in order to experience this app in all its glory.
     </p>
-    <form #creditCardForm="ngForm" (ngSubmit)="logCardForm(creditCardForm)" novalidate>
-      <ion-item>
-        <ion-label floating>Card Number</ion-label>
-        <ion-input type="number" [(ngModel)]="formNumber" name="number" required clearInput></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>Full Name</ion-label>
-        <ion-input [(ngModel)]="formName" name="name" required clearInput></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>MM/YY</ion-label>
-        <ion-input [(ngModel)]="formExpiry" name="expiry" required clearInput></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>CVC</ion-label>
-        <ion-input type="number" [(ngModel)]="formCvc" name="cvc" required clearInput></ion-input>
-      </ion-item>
-      <button ion-button type="submit" block margin-top>Add Card</button>
-    </form>
   </div>
 </ion-content>
