@@ -28,11 +28,12 @@
       <ion-col item-left><strong>{{merchantId}}</strong></ion-col>
     </ion-row>
     <ion-item margin-top>
-      <ion-label>Select credit card</ion-label>
-      <ion-select [(ngModel)]="creditCard">
-        <ion-option value="3007" selected="true">x-3007</ion-option>
-        <ion-option value="2128">x-2128</ion-option>
+      <ion-label>Select a credit card</ion-label>
+      <ion-select [(ngModel)]="selectedCard" (ionChange)="onCardSelection()">
+        <ion-option value="3007">x-3007</ion-option>
+        <ion-option value="2128" selected="true">x-2128</ion-option>
         <ion-option value="4313">x-4313</ion-option>
+        <ion-option value="">Add new card</ion-option>
       </ion-select>
     </ion-item>
     <ion-item margin-bottom>
@@ -54,24 +55,24 @@
       If you don't know what that is, just visit <em>[link to our custom page here]</em>
       from your browser in order to experience this app in all its glory.
     </p>
-    <form #creditCardForm="ngForm" (ngSubmit)="logForm(creditCardForm)" novalidate>
+    <form #creditCardForm="ngForm" (ngSubmit)="logCardForm(creditCardForm)" novalidate>
       <ion-item>
-        <ion-label color="primary" floating>Card Number</ion-label>
+        <ion-label floating>Card Number</ion-label>
         <ion-input type="number" [(ngModel)]="formNumber" name="number" required clearInput></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" floating>Full Name</ion-label>
+        <ion-label floating>Full Name</ion-label>
         <ion-input [(ngModel)]="formName" name="name" required clearInput></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" floating>MM/YY</ion-label>
+        <ion-label floating>MM/YY</ion-label>
         <ion-input [(ngModel)]="formExpiry" name="expiry" required clearInput></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" floating>Full Name</ion-label>
+        <ion-label floating>CVC</ion-label>
         <ion-input type="number" [(ngModel)]="formCvc" name="cvc" required clearInput></ion-input>
       </ion-item>
-      <button ion-button type="submit" block margin-top>Create Card</button>
+      <button ion-button type="submit" block margin-top>Add Card</button>
     </form>
   </div>
 </ion-content>

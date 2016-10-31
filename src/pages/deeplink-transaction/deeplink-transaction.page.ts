@@ -19,7 +19,7 @@ export class DeeplinkTransactionPage implements OnInit {
   callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
-  creditCard              : string;
+  selectedCard            : string;
   destination             : string;
   formNumber              : string;
   formName                : string;
@@ -35,10 +35,6 @@ export class DeeplinkTransactionPage implements OnInit {
     this.deeplinkDataProvider.params$.subscribe(
       (params: any) => { this.updateFromSubscription(params); }
     );
-  }
-
-  private logForm(formElem: any) { // TODO delete
-    console.log(formElem.form.value);
   }
 
   private updateFromSubscription(params: any) {
@@ -61,8 +57,29 @@ export class DeeplinkTransactionPage implements OnInit {
     });
   }
 
-  private processTransaction()  { this.isTransactionProcessed = true; }
+  private onCardSelection() {
+    if (this.selectedCard === "") {
+      console.log("Open modal =D"); // TODO replace with call to invoke actual New Credit Card modal
+    }
+    else {
+      this.logCardSelection();
+    }
+  }
 
-  private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
+  private processTransaction() {
+    this.isTransactionProcessed = true;
+  }
+
+  private proceedToCheckout() {
+    window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system');
+  }
+
+  private logCardSelection(){
+    console.log("Selected card: " + this.selectedCard);
+  }
+
+  private logCardForm(formElem: any) {
+    console.log(formElem.form.value);
+  }
 
 }
