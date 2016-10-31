@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ModalController } from 'ionic-angular';
 import { GoogleAnalytics } from 'ionic-native';
 
+import { AddCardPage } from '../add-card/add-card.page';
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
 
 @Component({
-  templateUrl:  './deeplink-transaction.page.html',
-  providers:    [DeeplinkDataProvider]
+  templateUrl : './deeplink-transaction.page.html',
+  providers   : [DeeplinkDataProvider]
 })
 export class DeeplinkTransactionPage implements OnInit {
   amount                  : number;
@@ -29,6 +30,7 @@ export class DeeplinkTransactionPage implements OnInit {
   constructor(
       private deeplinkDataProvider: DeeplinkDataProvider
       , private platform          : Platform
+      , private modalController   : ModalController
   ) {}
 
   ngOnInit(){
@@ -59,7 +61,7 @@ export class DeeplinkTransactionPage implements OnInit {
 
   private onCardSelection() {
     if (this.selectedCard === "") {
-      console.log("Open modal =D"); // TODO replace with call to invoke actual New Credit Card modal
+      let addCardModal = this.modalController.create(AddCardPage).present();
     }
     else {
       this.logCardSelection();
