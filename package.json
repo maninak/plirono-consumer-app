@@ -1,7 +1,7 @@
 {
   "name": "plirono-scaffold",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Kostis Maninakis",
+  "homepage": "http://plirono.com/",
   "private": true,
   "scripts": {
     "build": "ionic-app-scripts build",
