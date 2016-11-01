@@ -31,7 +31,7 @@
       <ion-label>Select a credit card</ion-label>
       <ion-select [(ngModel)]="selectedCard" (ionChange)="onCardSelection()">
         <ion-option value="3007">x-3007</ion-option> <!-- TODO delete, only for demo purposes -->
-        <ion-option value="2128" selected="true">x-2128</ion-option> <!-- TODO delete, only for demo purposes -->
+        <ion-option value="2128">x-2128</ion-option> <!-- TODO delete, only for demo purposes -->
         <ion-option *ngFor="let card of creditCards" value="{{card.number}}">x-{{card.number.substr(card.number.length - 4)}}</ion-option>
         <ion-option value="">add a card&hellip;</ion-option>
       </ion-select>
@@ -40,7 +40,7 @@
       <ion-label>Select shipping destination</ion-label>
       <ion-select [(ngModel)]="destination">
         <ion-option value="home">home</ion-option>
-        <ion-option value="work" selected="true">work</ion-option>
+        <ion-option value="work">work</ion-option>
       </ion-select>
     </ion-item>
     <button *ngIf="!(isTransactionProcessed)" (click)="processTransaction()" ion-button block margin-vertical>Confirm details</button>

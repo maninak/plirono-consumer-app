@@ -22,8 +22,8 @@ export class DeeplinkTransactionPage implements OnInit {
   callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
-  selectedCard            : string;
-  destination             : string;
+  selectedCard            : string  = '3007';
+  destination             : string  = 'work';
  
   constructor(
       private deeplinkDataProvider: DeeplinkDataProvider
