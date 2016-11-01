@@ -8,11 +8,12 @@ import { CreditCard } from '../../structures/credit-card.interface';
   templateUrl: './add-card.page.html'
 })
 export class AddCardPage {
-  creditCards : CreditCard[];
-  formNumber  : string;
-  formName    : string;
-  formExpiry  : string;
-  formCvc     : number;
+  creditCards     : CreditCard[];
+  formNumber      : string;
+  formName        : string;
+  formExpiryMonth : number;
+  formExpiryYear  : number;
+  formCvc         : number;
   
   constructor(
       private platform        : Platform
@@ -24,16 +25,17 @@ export class AddCardPage {
     }
     else {
       this.creditCards = [];
-    }
+    }    
   }
 
   private addCard() {
     // Asserts all form input fields have been validated before being called
     let newCard: CreditCard = {
-      number: this.formNumber
-      , name: this.formName
-      , expiry: this.formExpiry
-      , cvc: this.formCvc
+      number        : this.formNumber
+      , name        : this.formName
+      , expiryMonth : this.formExpiryMonth
+      , expiryYear  : this.formExpiryYear
+      , cvc         : this.formCvc
     };
     this.creditCards.push(newCard);
     localStorage.setItem('creditCards', JSON.stringify(this.creditCards));

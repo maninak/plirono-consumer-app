@@ -24,16 +24,23 @@
       <ion-input [(ngModel)]="formName" name="name" required clearInput></ion-input>
     </ion-item>
     <ion-row>
-      <ion-col width-50>
+      <ion-col width-25 no-padding>
         <ion-item>
-          <ion-label floating>MM/YY</ion-label>
-          <ion-input [(ngModel)]="formExpiry" name="expiry" required clearInput></ion-input>
+          <ion-label floating>MM</ion-label>
+          <ion-input type="number" [(ngModel)]="formExpiryMonth" name="expiryMonth" required></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col>
+      <span style="display: flex; align-items: flex-end; padding-left: 1em;">/</span>
+      <ion-col width-25 no-padding>
+        <ion-item>
+          <ion-label floating>YY</ion-label>
+          <ion-input type="number" [(ngModel)]="formExpiryYear" name="expiryYear" required></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col no-padding>
         <ion-item>
           <ion-label floating>CVC</ion-label>
-          <ion-input type="number" [(ngModel)]="formCvc" name="cvc" required clearInput></ion-input>
+          <ion-input type="number" [(ngModel)]="formCvc" name="cvc" required></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
