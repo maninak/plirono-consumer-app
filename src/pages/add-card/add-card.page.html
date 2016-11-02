@@ -17,7 +17,7 @@
   <form #creditCardForm="ngForm" (ngSubmit)="addCard()" novalidate>
     <ion-item>
       <ion-label floating>Card number</ion-label>
-      <ion-input type="number" [(ngModel)]="formNumber" name="number" required clearInput></ion-input>
+      <ion-input type="number" [(ngModel)]="formNumberModel" (keyup)="_keyPress($event)" minlength="12" maxlength="19" name="number" required clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Full name</ion-label>

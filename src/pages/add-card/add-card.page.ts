@@ -9,7 +9,8 @@ import { CreditCard } from '../../structures/credit-card.interface';
 })
 export class AddCardPage {
   creditCards     : CreditCard[];
-  formNumber      : string;
+  formNumberModel : string = '';
+  formNumber      : string = '';
   formName        : string;
   formExpiryMonth : number;
   formExpiryYear  : number;
@@ -40,6 +41,21 @@ export class AddCardPage {
     this.creditCards.push(newCard);
     localStorage.setItem('creditCards', JSON.stringify(this.creditCards));
     this.dismiss();
+  }
+
+  private _keyPress(event: any) {
+    console.log('event: ', event); // TODO delete
+    let inputChar = String.fromCharCode(event.charCode || event.which || event.keyCode);
+    if (!/[0-9]/.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+      this.formNumberModel = this.formNumber;
+    }
+    else {
+      // OK, valid input char
+      this.formNumber = this.formNumberModel;
+    }
+    console.log('inputChar: '+inputChar +', this.formNumber: '+this.formNumber); // TODO delete
   }
 
   private dismiss() {
