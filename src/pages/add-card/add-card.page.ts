@@ -49,7 +49,7 @@ export class AddCardPage {
     if (!/[0-9]/.test(inputChar)) {
       // invalid character, prevent input
       event.preventDefault();
-      this.formNumberModel = this.formNumber;
+      this.formNumberModel = (this.formNumber) ? this.formNumber : ' ';
     }
     else {
       // OK, valid input char
