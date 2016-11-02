@@ -11,19 +11,13 @@ import { CreditCard } from '../../structures/credit-card.interface';
 export class AddCardPage {
   creditCards     : CreditCard[];
   creditCardForm  : any;
-  formNumberModel : string = '';
-  formNumber      : string = '';
-  formName        : string;
-  formExpiryMonth : number;
-  formExpiryYear  : number;
-  formCvc         : number;
   
   constructor(
       private platform        : Platform
       , private navParams     : NavParams
       , private viewController: ViewController
       , private formBuilder   : FormBuilder
-  ) {
+  ) { 
     if (navParams.get('creditCards')) {
       this.creditCards = navParams.get('creditCards');
     }
@@ -45,12 +39,12 @@ export class AddCardPage {
   private addCard() {
     // Asserts all form input fields have been validated before being called
     let newCard: CreditCard = {
-      number        : this.formNumber
-      , name        : this.formName
-      , expiryMonth : this.formExpiryMonth
-      , expiryYear  : this.formExpiryYear
-      , cvc         : this.formCvc
-      , numberLastDigits: this.formNumber.substr(this.formNumber.length - 4)
+      number            : this.creditCardForm.value.number
+      , numberLastDigits: this.creditCardForm.value.number.slice(-4)
+      , name            : this.creditCardForm.value.name
+      , expiryMonth     : this.creditCardForm.value.expiryMonth
+      , expiryYear      : this.creditCardForm.value.expiryYear
+      , cvc             : this.creditCardForm.value.cvc
     };
     this.creditCards.push(newCard);
     localStorage.setItem('creditCards', JSON.stringify(this.creditCards));
@@ -59,17 +53,6 @@ export class AddCardPage {
 
   private _keyPress(event: any) {
     console.log('event: ', event); // TODO delete
-    let inputChar = String.fromCharCode(event.charCode || event.which || event.keyCode);
-    if (!/[0-9]/.test(inputChar)) {
-      // invalid character, prevent input
-      event.preventDefault();
-      this.formNumberModel = (this.formNumber) ? this.formNumber : ' ';
-    }
-    else {
-      // OK, valid input char
-      this.formNumber = this.formNumberModel;
-    }
-    console.log('inputChar: '+inputChar +', this.formNumber: '+this.formNumber); // TODO delete
   }
 
   private dismiss() {
