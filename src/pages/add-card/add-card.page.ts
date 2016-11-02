@@ -50,6 +50,7 @@ export class AddCardPage {
       , expiryMonth : this.formExpiryMonth
       , expiryYear  : this.formExpiryYear
       , cvc         : this.formCvc
+      , numberLastDigits: this.formNumber.substr(this.formNumber.length - 4)
     };
     this.creditCards.push(newCard);
     localStorage.setItem('creditCards', JSON.stringify(this.creditCards));
