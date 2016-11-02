@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController } from 'ionic-angular';
 import { GoogleAnalytics } from 'ionic-native';
+import * as $ from 'jquery'; // TODO delete if not used in here
 
 import { CreditCard } from '../../structures/credit-card.interface';
 import { AddCardPage } from '../add-card/add-card.page';
