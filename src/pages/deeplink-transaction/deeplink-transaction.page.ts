@@ -31,7 +31,6 @@ export class DeeplinkTransactionPage implements OnInit {
       , private modalController   : ModalController
   ) {
     this.creditCards = JSON.parse(localStorage.getItem('creditCards'));
-    console.log(this.creditCards); // TODO delete
   }
 
   ngOnInit(){
