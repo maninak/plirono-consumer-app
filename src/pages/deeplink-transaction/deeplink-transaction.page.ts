@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, ModalController } from 'ionic-angular';
 import { GoogleAnalytics } from 'ionic-native';
 
+import { CreditCard } from '../../structures/credit-card.interface';
+import { AddCardPage } from '../add-card/add-card.page';
 import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
 
 
 @Component({
-  templateUrl:  './deeplink-transaction.page.html',
-  providers:    [DeeplinkDataProvider]
+  templateUrl : './deeplink-transaction.page.html',
+  providers   : [DeeplinkDataProvider]
 })
 export class DeeplinkTransactionPage implements OnInit {
+  creditCards             : CreditCard[];
   amount                  : number;
   description             : string;
   merchantEmail           : string;
@@ -19,13 +22,17 @@ export class DeeplinkTransactionPage implements OnInit {
   callbackUrl             : string;
   isDeeplinkLaunch        : boolean = false;
   isTransactionProcessed  : boolean = false;
-  creditCard              : string;
-  destination             : string;
+  selectedCard            : string  = '3007';
+  destination             : string  = 'work';
  
   constructor(
       private deeplinkDataProvider: DeeplinkDataProvider
       , private platform          : Platform
-  ) {}
+      , private modalController   : ModalController
+  ) {
+    this.creditCards = JSON.parse(localStorage.getItem('creditCards'));
+    console.log(this.creditCards); // TODO delete
+  }
 
   ngOnInit(){
     this.deeplinkDataProvider.params$.subscribe(
@@ -53,8 +60,28 @@ export class DeeplinkTransactionPage implements OnInit {
     });
   }
 
-  private processTransaction()  { this.isTransactionProcessed = true; }
+  private onCardSelection() {
+    if (this.selectedCard === "") {
+      this.modalController.create(AddCardPage, {
+        'creditCards' : this.creditCards
+      })
+      .present();
+    }
+    else {
+      this.logCardSelection();
+    }
+  }
 
-  private proceedToCheckout()   { window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system'); }
+  private processTransaction() {
+    this.isTransactionProcessed = true;
+  }
+
+  private proceedToCheckout() {
+    window.open(this.callbackUrl+'/'+this.cartId+'/'+'aTransactionId', '_system');
+  }
+
+  private logCardSelection(){
+    console.log("Selected card: " + this.selectedCard);
+  }
 
 }
