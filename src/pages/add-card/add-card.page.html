@@ -14,37 +14,37 @@
 
 
 <ion-content class="add-card" padding>
-  <form #creditCardForm="ngForm" (ngSubmit)="addCard()" novalidate>
+  <form [formGroup]='creditCardForm' (ngSubmit)="logForm()">
     <ion-item>
       <ion-label floating>Card number</ion-label>
-      <ion-input type="number" [(ngModel)]="formNumberModel" (keyup)="_keyPress($event)" minlength="12" maxlength="19" name="number" required clearInput></ion-input>
+      <ion-input type="number" [(ngModel)]="formNumberModel" (keyup)="_keyPress($event)" minlength="12" maxlength="19" formControlName="number" clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Full name</ion-label>
-      <ion-input [(ngModel)]="formName" name="name" required clearInput></ion-input>
+      <ion-input [(ngModel)]="formName" formControlName="name" clearInput></ion-input>
     </ion-item>
-    <ion-row>
+    <ion-row padding-bottom>
       <ion-col width-25 no-padding>
         <ion-item>
           <ion-label floating>MM</ion-label>
-          <ion-input type="number" [(ngModel)]="formExpiryMonth" name="expiryMonth" required></ion-input>
+          <ion-input type="number" [(ngModel)]="formExpiryMonth" formControlName="expiryMonth"></ion-input>
         </ion-item>
       </ion-col>
       <span style="display: flex; align-items: flex-end; padding-left: 1em;">/</span>
       <ion-col width-25 no-padding>
         <ion-item>
           <ion-label floating>YY</ion-label>
-          <ion-input type="number" [(ngModel)]="formExpiryYear" name="expiryYear" required></ion-input>
+          <ion-input type="number" [(ngModel)]="formExpiryYear" formControlName="expiryYear"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col no-padding>
         <ion-item>
           <ion-label floating>CVC</ion-label>
-          <ion-input type="number" [(ngModel)]="formCvc" name="cvc" required></ion-input>
+          <ion-input type="number" [(ngModel)]="formCvc" formControlName="cvc"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <button ion-button type="submit" block margin-top icon-right>
+    <button ion-button type="submit" [disabled]="!creditCardForm.valid" block margin-top icon-right>
       Add Card
       <ion-icon name="filing"></ion-icon>
     </button>

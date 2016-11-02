@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Platform, NavParams, ViewController } from 'ionic-angular';
 
 import { CreditCard } from '../../structures/credit-card.interface';
@@ -9,6 +10,7 @@ import { CreditCard } from '../../structures/credit-card.interface';
 })
 export class AddCardPage {
   creditCards     : CreditCard[];
+  creditCardForm  : any;
   formNumberModel : string = '';
   formNumber      : string = '';
   formName        : string;
@@ -20,6 +22,7 @@ export class AddCardPage {
       private platform        : Platform
       , private navParams     : NavParams
       , private viewController: ViewController
+      , private formBuilder   : FormBuilder
   ) {
     if (navParams.get('creditCards')) {
       this.creditCards = navParams.get('creditCards');
@@ -27,6 +30,16 @@ export class AddCardPage {
     else {
       this.creditCards = [];
     }    
+  }
+
+  private ionViewDidLoad() {
+    this.creditCardForm = this.formBuilder.group({
+      number        : ['', Validators.required]
+      , name        : ['', Validators.required]
+      , expiryMonth : ['', Validators.required]
+      , expiryYear  : ['', Validators.required]
+      , cvc         : ['', Validators.required]
+    });
   }
 
   private addCard() {
@@ -62,8 +75,8 @@ export class AddCardPage {
     this.viewController.dismiss();
   }
 
-  private logCardForm(formElem: any) {
-    console.log(formElem.form.value);
+  private logForm(formElem: any) {
+    console.log(this.creditCardForm.value);
   }
 
 }
