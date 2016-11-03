@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Platform, NavParams, ViewController } from 'ionic-angular';
+import { CardIO } from 'ionic-native';
 
 import { CreditCard } from '../../structures/credit-card.interface';
 
@@ -34,6 +35,31 @@ export class AddCardPage {
       , expiryYear  : ['', Validators.required]
       , cvc         : ['', Validators.required]
     });
+  }
+
+  private scanCard() {
+    CardIO.canScan()
+      .then(
+        (res: boolean) => {
+          if (res){
+            let options = {
+              requireExpiry         : false
+              , requireCCV          : false
+              , requirePostalCode   : false
+              , keepApplicationTheme: true
+              , guideColor          : '#00939b'
+              , scanExpiry          : true
+              , suppressConfirmation: true
+              , supressManual       : true
+              , hideCardIOLogo      : true
+            };
+            CardIO.scan(options);
+          }
+        }
+      )
+      .catch( (err: any) => {
+        console.error(err);
+      });
   }
 
   private addCard() {
