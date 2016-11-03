@@ -78,5 +78,6 @@
   </plugin>
   <plugin name="cordova-plugin-inappbrowser" spec="https://git-wip-us.apache.org/repos/asf/cordova-plugin-inappbrowser.git"/>
   <plugin name="cordova-plugin-google-analytics" spec="~1.6.0"/>
+  <plugin name="card.io.cordova.mobilesdk" spec="https://github.com/card-io/card.io-Cordova-Plugin"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 </widget>
