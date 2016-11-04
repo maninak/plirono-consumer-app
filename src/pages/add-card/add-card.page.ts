@@ -24,16 +24,7 @@ export class AddCardPage {
     } else {
       this.creditCards = [];
     }
-  }
-
-  public ionViewDidLoad(): void {
-    this.creditCardForm = this.formBuilder.group({
-      number      : ['', Validators.required],
-      name        : ['', Validators.required],
-      expiryMonth : ['', Validators.required],
-      expiryYear  : ['', Validators.required],
-      cvc         : ['', Validators.required],
-    });
+    this.initFormValidators();
   }
 
   public scanCard(): void {
@@ -82,6 +73,16 @@ export class AddCardPage {
 
   public logForm(formElem: any): void {
     console.log(this.creditCardForm.value);
+  }
+
+  private initFormValidators(): void {
+    this.creditCardForm = this.formBuilder.group({
+      number      : ['', Validators.required],
+      name        : ['', Validators.required],
+      expiryMonth : ['', Validators.required],
+      expiryYear  : ['', Validators.required],
+      cvc         : ['', Validators.required],
+    });
   }
 
 }
