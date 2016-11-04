@@ -20,10 +20,11 @@
     "switch-default": true,
     "use-isnan": true,
     "label-position": true,
+    "eofline": true,
     "no-conditional-assignment": true,
     "object-literal-key-quotes": [
       true,
-      "always"
+      "as-needed"
     ],
     "ordered-imports": [
       true,
@@ -66,11 +67,14 @@
     ],
     "max-line-length": [
       true,
-      90
+      120
     ],
     "trailing-comma": [
       true,
-      { "multiline": "always" }
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
     ],
     "align": [
       true,
@@ -92,6 +96,9 @@
     "no-var-keyword": true,
     "one-line": [
         true,
+        "check-catch",
+        "check-finally",
+        "check-else",
         "check-open-brace",
         "check-whitespace"
     ],
@@ -111,10 +118,7 @@
       true,
       {
         "call-signature": "nospace",
-        "index-signature": "nospace",
-        "parameter": "nospace",
-        "property-declaration": "nospace",
-        "variable-declaration": "nospace"
+        "index-signature": "nospace"
       },
       {
         "call-signature": "onespace",
