@@ -17,7 +17,7 @@
   <form [formGroup]='creditCardForm' (ngSubmit)="addCard()">
     <ion-item>
       <ion-label floating>Card number</ion-label>
-      <ion-input type="number" (keyup)="_keyPress($event)" minlength="12" maxlength="19" formControlName="number" clearInput></ion-input>
+      <ion-input type="number" minlength="12" maxlength="19" formControlName="number" clearInput></ion-input>
     </ion-item>
     <ion-item>
       <ion-label floating>Full name</ion-label>
