@@ -10,7 +10,8 @@
     "emulate:before": "build",
     "deploy:before": "build",
     "build:before": "build",
-    "run:before": "build"
+    "run:before": "build",
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'"
   },
   "dependencies": {
     "@angular/common": "^2.0.0",
