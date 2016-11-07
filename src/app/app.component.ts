@@ -1,8 +1,8 @@
+import { DeeplinkTransactionPage } from './../pages/deeplink-transaction/deeplink-transaction.page';
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
-
-import { DeeplinkTransactionPage } from '../pages/deeplink-transaction/deeplink-transaction.page';
 
 
 @Component({
@@ -11,8 +11,8 @@ import { DeeplinkTransactionPage } from '../pages/deeplink-transaction/deeplink-
 export class MyApp {
   @ViewChild(Nav) public nav: Nav;
 
-  public rootPage : any = DeeplinkTransactionPage;
-  public pages    : Array<{title: string, component: any}>;
+  public rootPage : Object = DeeplinkTransactionPage;
+  public pages    : Array<{title: string, component: Object }>;
 
   public constructor(public platform: Platform) {
     this.initializeApp();
@@ -27,12 +27,12 @@ export class MyApp {
   private initializeApp(): void {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // Here you can do all higher level native things you might need.
       StatusBar.styleDefault();
     });
   }
 
-  private openPage(page: {title: string, component: any}): void {
+  private openPage(page: {title: string, component: Object}): void {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);

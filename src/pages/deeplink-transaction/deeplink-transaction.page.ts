@@ -1,10 +1,11 @@
+import { DeeplinkDataProvider } from './../../providers/deeplink-data.provider';
+import { ICreditCard } from './../../structures/credit-card';
+import { DeeplinkParams } from './../../structures/deeplink-params.class';
+import { AddCardPage } from './../add-card/add-card.page';
+
 import { Component, OnInit } from '@angular/core';
 import { ModalController, Platform } from 'ionic-angular';
 import { GoogleAnalytics } from 'ionic-native';
-
-import { DeeplinkDataProvider } from '../../providers/deeplink-data.provider';
-import { ICreditCard } from '../../structures/credit-card';
-import { AddCardPage } from '../add-card/add-card.page';
 
 
 @Component({
@@ -35,11 +36,11 @@ export class DeeplinkTransactionPage implements OnInit {
 
   public ngOnInit(): void {
     this.deeplinkDataProvider.params$.subscribe(
-      (params: any) => { this.updateFromSubscription(params); }
+      (params: DeeplinkParams) => { this.updateFromSubscription(params); }
     );
   }
 
-  private updateFromSubscription(params: any): void {
+  private updateFromSubscription(params: DeeplinkParams): void {
     this.amount             = params.amount;
     this.description        = params.description;
     this.merchantEmail      = params.merchantEmail;
