@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NavParams, Platform, ViewController } from 'ionic-angular';
+import { CardIO } from 'ionic-native';
 
 import { ICreditCard } from '../../structures/credit-card';
 
@@ -23,16 +24,32 @@ export class AddCardPage {
     } else {
       this.creditCards = [];
     }
+    this.initFormValidators();
   }
 
-  public ionViewDidLoad(): void {
-    this.creditCardForm = this.formBuilder.group({
-      number      : ['', Validators.required],
-      name        : ['', Validators.required],
-      expiryMonth : ['', Validators.required],
-      expiryYear  : ['', Validators.required],
-      cvc         : ['', Validators.required],
-    });
+  public scanCard(): void {
+    CardIO.canScan()
+      .then(
+        (res: boolean) => {
+          if (res) {
+            let options: {} = {
+              requireExpiry       : false,
+              requireCCV          : false,
+              requirePostalCode   : false,
+              keepApplicationTheme: true,
+              guideColor          : '#00939b',
+              scanExpiry          : true,
+              suppressConfirmation: true,
+              supressManual       : true,
+              hideCardIOLogo      : true,
+            };
+            CardIO.scan(options);
+          }
+        }
+      )
+      .catch( (err: any) => {
+        console.error(err);
+      });
   }
 
   public addCard(): void {
@@ -56,6 +73,16 @@ export class AddCardPage {
 
   public logForm(formElem: any): void {
     console.log(this.creditCardForm.value);
+  }
+
+  private initFormValidators(): void {
+    this.creditCardForm = this.formBuilder.group({
+      number      : ['', Validators.required],
+      name        : ['', Validators.required],
+      expiryMonth : ['', Validators.required],
+      expiryYear  : ['', Validators.required],
+      cvc         : ['', Validators.required],
+    });
   }
 
 }

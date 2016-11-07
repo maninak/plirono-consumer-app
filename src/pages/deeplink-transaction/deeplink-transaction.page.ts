@@ -74,7 +74,7 @@ export class DeeplinkTransactionPage implements OnInit {
   }
 
   private proceedToCheckout(): void {
-    window.open(this.callbackUrl + '/' + this.cartId + '/' + 'aTransactionId', '_system');i
+    window.open(this.callbackUrl + '/' + this.cartId + '/' + 'aTransactionId', '_system');
   }
 
   private logCardSelection(): void {

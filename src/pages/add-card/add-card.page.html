@@ -14,6 +14,10 @@
 
 
 <ion-content class="add-card" padding>
+  <button ion-button block outline icon-right (click)="scanCard()">
+    Scan Card
+    <ion-icon name="camera"></ion-icon>
+  </button>
   <form [formGroup]='creditCardForm' (ngSubmit)="addCard()">
     <ion-item>
       <ion-label floating>Card number</ion-label>
