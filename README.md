@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a proof-of-concept app that serves as a testbench for the early functionality being implemented in Plirono project.
+This is a proof-of-concept mobile app for the customers of merchants using Plirono.
 
 ## Installation
 
@@ -13,8 +13,8 @@ This is a proof-of-concept app that serves as a testbench for the early function
 1. `git clone git@gitlab.omnixell.com:mottolini/fake-tinaba.git`
 2. `cd fake-tinaba`
 3. `npm i`
-4. `npm install -g cordova ionic` (if not already existing on machine)
+4. `npm install -g cordova ionic` (requires admin privileges)
 
 ## Serve
 
-1. `npm run build && ionic serve`
+1. `npm start`
