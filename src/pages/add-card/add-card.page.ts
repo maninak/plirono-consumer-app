@@ -1,9 +1,9 @@
+import { ICreditCard } from './../../structures/credit-card';
+
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NavParams, Platform, ViewController } from 'ionic-angular';
 import { CardIO } from 'ionic-native';
-
-import { ICreditCard } from '../../structures/credit-card';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { ICreditCard } from '../../structures/credit-card';
 })
 export class AddCardPage {
   public creditCards    : ICreditCard[];
-  public creditCardForm : any;
+  public creditCardForm : { value: ICreditCard };
 
   public constructor(
       private platform      : Platform,
@@ -47,7 +47,7 @@ export class AddCardPage {
           }
         }
       )
-      .catch( (err: any) => {
+      .catch( (err: Object) => {
         console.error(err);
       });
   }
@@ -71,7 +71,7 @@ export class AddCardPage {
     this.viewController.dismiss();
   }
 
-  public logForm(formElem: any): void {
+  public logForm(formElem: HTMLFormElement): void {
     console.log(this.creditCardForm.value);
   }
 
