@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { AddCardPage } from '../pages/add-card/add-card.page';
 import { DeeplinkTransactionPage } from '../pages/deeplink-transaction/deeplink-transaction.page';
@@ -22,6 +22,9 @@ import { MyApp } from './app.component';
     DeeplinkTransactionPage,
     AddCardPage,
   ],
-  providers: [DeeplinkDataProvider],
+  providers: [
+    DeeplinkDataProvider,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+  ],
 })
 export class AppModule {}
